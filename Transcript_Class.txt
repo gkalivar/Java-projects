@@ -1,0 +1,377 @@
+
+
+
+servlet
+
+project setup
+
+click on dynamic web project in new
+
+Install Tomcat server
+
+
+
+222.Hello Servlets project
+
+go to java resources -> Src
+
+Create a new package
+
+Name: org.studyeasy.Servlets
+
+create a servlet
+
+update buildpath with the jar files
+
+this is the method that runs the get method and then it throws the output in the browser
+
+this is our first servlet program
+
+
+What is a servlet??
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		//System.out.println("Hello world");
+		
+		response.getWriter().println("<h1>Hello world</h1>");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
+Hello JSP
+
+go to webapp and create a html file. select the html file and run on the server
+
+
+
+
+SERVLET Lifecycle
+
+https://www.javatpoint.com/life-cycle-of-a-servlet
+
+https://www.javatpoint.com/jsp-scriptlet-tag
+
+
+Expression element
+
+<%= new java.util.Date() %>
+
+
+scriplet element
+
+java comments can be used only for the scriplet element only
+
+
+//Scriplet
+<br>
+
+<%
+
+for(int i = 0; i<=10;i++){
+	out.print("<br></br>");
+	out.print(i);
+}
+
+%>
+
+<br>
+Declaration Element
+
+<%!
+	String messgae(){
+	
+		return "This is the new web training";
+}
+
+%>
+
+
+<%= messgae() %>
+
+
+
+
+https://www.javatpoint.com/jsp-tutorial
+
+230 -- Deployment Descriptor & annotations
+
+
+
+
+232 -- Reading URL parameters
+
+
+get the value from the get parameter
+
+		-> Show them google website with the input and how it changes the weblink
+
+
+In java resource -> src - > create a package -> Inside the package create a servlet
+
+
+
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().print(request.getParameter("Getvalue1"));
+		
+		PrintWriter out = response.getWriter();
+		out.println("Value 1:" +request.getParameter("Getvalue1"));
+		//out.println("Value 2:" +request.getParameter("GetValue2"));
+	}
+
+
+
+
+http://localhost:8083/5_URL_Parameter/parameterservlet?Getvalue1=testingparam
+
+
+
+
+Create a JSP File
+
+
+and then copy both line into the body
+
+out.println("Value 1:" +request.getParameter("Getvalue1"));
+out.println("Value 2:" +request.getParameter("GetValue2"));
+
+
+
+233 Include Files in JSP
+
+Create two text files in the Webpage tab where you will create JSP.
+
+Then go to create a new JSP file in there include these commands
+
+<!-- For Static content -->
+<%@ include file="File1.txt" %>
+
+<!-- For Dynamic content -->
+<jsp:include page="File2.txt"></jsp:include>
+
+
+
+234: Inport classes into JSP page
+
+
+IN THE SAME JSP FILE
+
+<%out.print(new java.util.Date()); %>
+
+<%@ page import="java.util.Date" %>
+<%= new Date() %>
+
+
+
+create a class in the JAVA RESOURCES > Src folder
+
+
+
+package org.learn;
+
+public class UserDefined {
+	
+	public String Demo() {
+		
+		return "Text from Demo Method";
+	}
+
+}
+
+
+
+
+In the JSP file create this in the commands
+
+
+
+<%@ page import="org.learn.UserDefined" %>
+
+<% out.print(new UserDefined().Demo()); %>
+
+
+
+235.Forward & redirect under JSP
+
+Create 3 JSP files
+
+demo.jsp
+forward.jsp
+redirect.jsp
+
+
+Its from the original page
+
+<jsp:forward page="forward.jsp"></jsp:forward>
+
+Whenever the developer dont want to use the same file.
+
+
+
+
+236: MVC overview
+
+Model view controller
+
+Design patterns
+
+- code usability
+- Seperation of concern
+
+
+
+238:Application Creation
+
+
+	- Create a dynamic web project
+	- Create about.jsp,index.jsp,login.jsp,Notfound.jsp,signup.jsp
+	- create servlet as java/resource -> main/java with a class name "Controller"
+	- in the controller type the below code
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+			String param = request.getParameter("page");
+		if(param.equals("login")) {
+			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		} else if(param.equals("signup")) {
+			getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+		}else if(param.equals("about")) {
+			getServletContext().getRequestDispatcher("/about.jsp").forward(request, response);
+		}
+		else {
+			getServletContext().getRequestDispatcher("/NotFound.jsp").forward(request, response);
+		}
+	}
+
+
+
+
+
+
+
+
+http://localhost:8083/7_Basic_Application_using_MVC/Controller?page=login
+
+
+index.jsp
+
+<body>
+<h1>This is homepage</h1>
+
+<br>
+<a href ="<%= request.getContextPath() %>/Controller?page=login">Login</a>
+<br>
+<a href ="<%= request.getContextPath() %>/Controller?page=signup">signup</a>
+<br>
+<a href ="<%= request.getContextPath() %>/Controller?page=about">About</a>
+
+</body>
+
+
+
+
+
+FORMS
+
+
+240 Forms overview
+
+
+
+
+
+	form.jsp
+
+
+<form action="submit.jsp" method="get">
+	Full Name:<input type="text" name="name"><br/>
+	Gender: <input type="radio" name="gender" value="male">Male
+			<input type="radio" name="gender" value="FEmale">Female <br/>
+	Languages Known:<input type="checkbox" name="language" value="english"> English
+					<input type="checkbox" name="language" value="Hindi"> Hindi
+					<input type="checkbox" name="language" value="Tamil"> Tamil <br/>
+					
+	Country: <select name="country">
+			<option value = "india">India</option>
+			<option value = "USA">USA</option>
+			<option value = "UK">UK</option>
+			<option value = "UAE">UAE</option>
+			<option value = "Fiji">Fiji</option>
+		
+	</select>
+	
+	<input type = "submit" value="Submit">
+</form>
+
+
+
+
+	- submit.jsp
+
+	
+
+	Name : <%= request.getParameter("name") %> <br/>
+Gender : <%= request.getParameter("gender") %> <br/>
+Languages Known : <%
+
+String[] contries = request.getParameterValues("languages");
+if(contries != null){
+	
+	for(int i =0;i<contries.length;i++){
+		out.print(contries[i]);
+		out.print("<br>");
+	}			
+} else {
+	
+	out.print("No record found");
+}
+
+
+
+
+
+
+
+FORM VALIDATION
+
+
+go to form.jsp
+
+	Full Name:<input type="text" name="name" required><br/>
+	Gender: <input type="radio" name="gender" value="male" checked="checked">Male
+
+
+
+
+BEANS OVERVIEW
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

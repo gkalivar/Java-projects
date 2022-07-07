@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;org.classname.Components&apos; to &apos;Controller&apos;&#x0D;&#x0A;- Original project: &apos;MVC_Application&apos;&#x0D;&#x0A;- Original element: &apos;org.classname.Components&apos;&#x0D;&#x0A;- Renamed element: &apos;org.classname.Controller&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Components&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;org.classname{Components.java[Components" matchStrategy="1" name="Controller" qualified="false" references="true" similarDeclarations="false" stamp="1657203318249" textual="false" version="1.0"/>
+</session>
